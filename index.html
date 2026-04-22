@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Ricerca pratica ONB</title>
+<style>
+body { font-family: Segoe UI, Arial, sans-serif; background-color: #f5f5f5; display: flex; justify-content: center; align-items: flex-start; height: 100vh; margin: 0; }
+.container { margin-top: 40px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); width: 420px; }
+.title { font-size: 18px; font-weight: 600; color: #0078d4; margin-bottom: 5px; }
+.subtitle { font-size: 13px; color: #6B7280; margin-bottom: 15px; }
+.row { display: flex; gap: 10px; }
+input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; }
+button { background-color: #0078d4; color: white; border: none; padding: 10px 14px; border-radius: 6px; cursor: pointer; font-weight: 500; }
+button:hover { background-color: #005fa3; }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="title">Ricerca pratica ONB</div>
+    <div class="subtitle">Inserisci il numero e apri la pratica</div>
+    <div class="row">
+        <input id="codice" placeholder="Inserisci numero pratica ONB" onkeydown="handleKey(event)">
+        <button onclick="apri()">Apri ↗</button>
+    </div>
+</div>
+<script>
+function apri() {
+    var c = document.getElementById("codice").value.trim();
+    if(!c){ alert("Inserisci un numero pratica"); return; }
+    if(!/^[0-9]+$/.test(c)){ alert("Inserire solo numeri"); return; }
+    window.open("https://crm.axerve.com/index.php#Opportunities/" + c, "_blank");
+    document.getElementById("codice").value = "";
+}
+function handleKey(event){
+    if(event.key === "Enter"){ apri(); }
+}
+</script>
+</body>
+</html>
